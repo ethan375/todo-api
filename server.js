@@ -8,7 +8,7 @@ require('dotenv').config()
 
 
 //db
-require('./db/db.js');
+// require('./db/db.js');
 
 
 
@@ -46,4 +46,6 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(`server is listening on port ${process.env.PORT}`)
+app.listen(process.env.PORT, ()=> {
+    console.log(`server is listening on port ${process.env.PORT}`)
+})
