@@ -4,9 +4,11 @@ const router = express.Router();
 const Lists = require('../models/Lists.js')
 
 router.get('/', (req,res) => {
-    db = Lists();
-    console.log(db);
-    res.send('this is a response, look in the console')
+    console.log(Lists[0])
+    let allLists = Lists();
+    console.log(allLists)
+    // allLists = res.json(allLists)
+    res.send({allLists: allLists});
 })
 
 module.exports = router;
