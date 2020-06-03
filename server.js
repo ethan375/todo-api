@@ -7,8 +7,8 @@ const methodOverride = require('method-override');
 require('dotenv').config()
 
 
-//db
-// require('./db/db.js');
+// db
+require('./db/db.js');
 
 
 
