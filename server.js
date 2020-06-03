@@ -15,15 +15,17 @@ require('./db/db.js');
 //Middleware 
 app.use(bodyParser.urlencoded({extended: true}))
 
+app.use(express.json())
+
 app.use(express.static('public'));
 
 app.use(methodOverride('_method'));
 
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: false
-}))
+// app.use(session({
+//     secret: process.env.SECRET_KEY,
+//     resave: false,
+//     saveUninitialized: false
+// }))
 
 
 

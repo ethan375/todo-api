@@ -8,8 +8,9 @@ const ListSchema = new mongoose.Schema({
     },
     tasks: [
     {
+        default: null,
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task'
+        ref: 'Task',
     }
     ]
 })
