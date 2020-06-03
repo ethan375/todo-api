@@ -35,6 +35,11 @@ app.use(methodOverride('_method'));
 const homeController = require('./controllers/home.js');
 app.use('/home', homeController);
 
+const listController = require('./controllers/lists.js');
+app.use('/lists', listController);
+
+const taskController = require('./controllers/tasks.js');
+app.use('/tasks', taskController);
 
 
 
