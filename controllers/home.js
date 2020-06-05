@@ -8,8 +8,8 @@ router.get('/', (req,res) => {
         if (err) {
             console.error(err)
         } else {
-            console.log(foundLists)
-            res.send(foundLists)
+            foundLists = JSON.stringify(foundLists)
+            res.send(foundLists)   
         }
     })
     
