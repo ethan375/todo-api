@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Lists = require('../models/Lists.js')
-const Tasks = require('../models/Tasks.js')
 
 router.get('/', (req,res) => {
-    const dbQuery = Lists.find({}, (err, foundLists) => {
+    Lists.find({}, (err, foundLists) => {
         if (err) {
             console.error(err)
         } else {

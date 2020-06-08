@@ -15,6 +15,7 @@ router.get('/:id', (req, res)=> {
 
 
 router.post('/new', (req, res) => {
+    console.log(`route being hit`)
     const newTask = new task({
         name: req.body.name,
         list: req.body.list
