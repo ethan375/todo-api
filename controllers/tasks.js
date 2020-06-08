@@ -43,4 +43,19 @@ router.post('/new', (req, res) => {
 })
 
 
+
+
+router.patch('/toggle-completed/:id', (req, res) => {
+    let id = req.body['_id']
+    id = Number(id)
+    const taskToChange = task.findById(id, (err, foundTask) => {
+        if (err) {
+            console.error(err)
+        }
+    })
+
+    console.log(taskToChange)
+})
+
+
 module.exports = router;
