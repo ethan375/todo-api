@@ -18,7 +18,7 @@ router.post('/new', (req, res) => {
     const newTask = new task({
         name: req.body.name,
         list: req.body.list,
-        compelted: false,
+        completed: false
     });
 
     newTask.save(newTask, (err, createdTask) => {
@@ -26,7 +26,15 @@ router.post('/new', (req, res) => {
             console.error(err)
             res.send(`There was an issue creating the new task`)
         } else {
-            // res.send(createdTask)
+            list.findById(req.body.list, (err, foundList) => {
+                if ( err ) {
+                    console.error(`something went wrong in finding the list that the task is going to be saved to`);
+                } else {
+                    foundList.tasks.push(newTask['_id'])
+                    foundList.save()
+                    res.send(createdTask)
+                }
+            })
         }
     })
 })
