@@ -15,10 +15,10 @@ router.get('/:id', (req, res)=> {
 
 
 router.post('/new', (req, res) => {
-    console.log(`route being hit`)
     const newTask = new task({
         name: req.body.name,
-        list: req.body.list
+        list: req.body.list,
+        compelted: false,
     });
 
     newTask.save(newTask, (err, createdTask) => {
@@ -29,17 +29,6 @@ router.post('/new', (req, res) => {
             // res.send(createdTask)
         }
     })
-
-    list.findById(req.body.list, (err, foundList) => {
-        if (err) {
-            console.error(err)
-            res.send(`There was a problem saving the task to the list`)
-        } else {
-            foundList.tasks.push(newTask)
-            foundList.save()
-            res.send(newTask)
-        }
-    })
 })
 
 
@@ -47,14 +36,19 @@ router.post('/new', (req, res) => {
 
 router.patch('/toggle-completed/:id', (req, res) => {
     let id = req.body['_id']
-    id = Number(id)
-    const taskToChange = task.findById(id, (err, foundTask) => {
+    task.findById(id, (err, foundTask) => {
         if (err) {
             console.error(err)
+        } else {
+            if ( foundTask.completed == true ) {
+                foundTask.completed = false
+            } else {
+                foundTask.completed = true
+            }
+            foundTask.save()
+            res.send(foundTask)
         }
     })
-
-    console.log(taskToChange)
 })
 
 
