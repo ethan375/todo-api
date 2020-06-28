@@ -4,11 +4,25 @@ const task = require('../models/Tasks.js');
 const list = require('../models/Lists')
 
 router.get('/:id', (req, res)=> {
-    task.findOne({id: req.param.id}, (err, foundTasks) => {
+    task.find({_id: req.params.id}, (err, foundTasks) => {
         if (err) {
-            console.error(err);
+            res.send(err)
         } else {
             res.send(foundTasks);
+        }
+    })
+})
+
+
+router.get('/nested-tasks', (req, res) => {
+    const taskIds = req.body.tasksArray;
+
+    task.find({id: taskIds}, (err, foundTasks) => {
+        if ( err ) {
+            console.error("some shit done fucked up!", err)
+        } else {
+            console.log(foundTasks)
+            res.send('check the console')
         }
     })
 })
