@@ -75,7 +75,7 @@ router.patch('/toggle-completed/:id', (req, res) => {
 })
 
 
-router.delete('/delete/:id', (req, res) => {\
+router.delete('/delete/:id', (req, res) => {
 
     Tasks.findByIdAndDelete({_id: req.params.id}, (err, deletedTask) => {
         if (err) {
@@ -84,7 +84,7 @@ router.delete('/delete/:id', (req, res) => {\
             res.send(`task deleted: ${deletedTask}`)
         }
     })
-    
+
 })
 
 
