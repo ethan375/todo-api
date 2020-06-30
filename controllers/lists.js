@@ -12,5 +12,15 @@ router.get('/', (req,res) => {
     })
 })
 
+router.delete('/delete/:id', (req,res) => {
+    list.findByIdAndDelete( {_id: req.params.id}, (err, deletedList ) => {
+        if ( err ) {
+            console.error(err);
+        } else {
+            res.send(deletedList)
+        }
+    })
+})
+
 
 module.exports = router;
