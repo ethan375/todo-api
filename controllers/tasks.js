@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const task = require('../models/Tasks.js');
-const list = require('../models/Lists')
+const list = require('../models/Lists');
+const Tasks = require('../models/Tasks.js');
 
 router.get('/:id', (req, res)=> {
     task.find({_id: req.params.id}, (err, foundTasks) => {
@@ -71,6 +72,19 @@ router.patch('/toggle-completed/:id', (req, res) => {
             res.send(foundTask)
         }
     })
+})
+
+
+router.delete('/delete/:id', (req, res) => {\
+
+    Tasks.findByIdAndDelete({_id: req.params.id}, (err, deletedTask) => {
+        if (err) {
+            console.error( err )
+        } else {
+            res.send(`task deleted: ${deletedTask}`)
+        }
+    })
+    
 })
 
 
