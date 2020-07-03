@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const task = require('../models/Tasks.js');
 const list = require('../models/Lists');
-const Tasks = require('../models/Tasks.js');
 
 router.get('/:id', (req, res)=> {
     task.find({_id: req.params.id}, (err, foundTasks) => {
@@ -22,7 +21,6 @@ router.get('/nested-tasks', (req, res) => {
         if ( err ) {
             console.error("some shit done fucked up!", err)
         } else {
-            console.log(foundTasks)
             res.send('check the console')
         }
     })
@@ -74,13 +72,24 @@ router.patch('/toggle-completed/:id', (req, res) => {
     })
 })
 
-
+//need to delete the task id from the list array!!!!
 router.delete('/delete/:id', (req, res) => {
 
-    Tasks.findByIdAndDelete({_id: req.params.id}, (err, deletedTask) => {
+    task.findByIdAndDelete({_id: req.params.id}, (err, deletedTask) => {
         if (err) {
             console.error( err )
         } else {
+            list.find({_id: deletedTask.list}, (err, foundList) => {
+                if (err) {
+                    console.error(err)
+                } else {
+                    foundList = foundList[0]
+                    deletedTaskId = foundList.tasks.indexOf(deletedTask)
+
+                    foundList.tasks = foundList.tasks.splice(deletedTaskId, 0)
+                    foundList.save()
+                }
+            })
             res.send(`task deleted: ${deletedTask}`)
         }
     })

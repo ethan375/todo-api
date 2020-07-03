@@ -12,6 +12,7 @@ router.get('/', (req,res) => {
     })
 })
 
+//need to delete all the task in the lists!!!
 router.delete('/delete/:id', (req,res) => {
     list.findByIdAndDelete( {_id: req.params.id}, (err, deletedList ) => {
         if ( err ) {
