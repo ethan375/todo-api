@@ -84,9 +84,9 @@ router.delete('/delete/:id', (req, res) => {
                     console.error(err)
                 } else {
                     foundList = foundList[0]
-                    deletedTaskId = foundList.tasks.indexOf(deletedTask)
+                    deletedTaskPosition = foundList.tasks.indexOf(deletedTask.id)
 
-                    foundList.tasks = foundList.tasks.splice(deletedTaskId, 0)
+                    foundList.tasks.splice(deletedTaskPosition, 1)
                     foundList.save()
                 }
             })

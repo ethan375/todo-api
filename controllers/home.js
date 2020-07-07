@@ -25,9 +25,8 @@ router.post('/', (req,res) => {
         if (err) {
             console.error(err)
         } else {
-            console.log(createdList);
+            res.send(createdList)
         }
     })
-    res.send('this route is being wired up');
 })
 module.exports = router;
