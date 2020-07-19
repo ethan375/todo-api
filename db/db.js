@@ -6,8 +6,8 @@ mongoose.connection.on('connected', () => {
     console.log(`connected to the db`)
 });
 
-mongoose.connection.on('disconnected', (err) => {
-    throw(`Disconnected from the db: \n ${err}`)
+mongoose.connection.on('disconnected', () => {
+    throw(`Disconnected from the db`)
 });
 
 mongoose.connection.on('error', (err) => {
