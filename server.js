@@ -24,19 +24,19 @@ app.use(methodOverride('_method'));
 
 app.use(cors())
 
-// app.use(session({
-//     secret: process.env.SECRET_KEY,
-//     resave: false,
-//     saveUninitialized: false
-// }))
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false
+}))
 
 
 
 
 // Controllers
 
-const homeController = require('./controllers/home.js');
-app.use('/home', homeController);
+const authController = require('./controllers/auth.js');
+app.use('/auth', authController);
 
 const listController = require('./controllers/lists.js');
 app.use('/lists', listController);
