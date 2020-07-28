@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const methodOverride = require('method-override');
 const cors = require('cors');
 
@@ -24,11 +23,6 @@ app.use(methodOverride('_method'));
 
 app.use(cors())
 
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: false
-}))
 
 
 

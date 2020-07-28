@@ -3,7 +3,7 @@ const router = express.Router();
 const list = require('../models/Lists.js');
 
 router.get('/', (req,res) => {
-    Lists.find({}, (err, foundLists) => {
+    list.find({}, (err, foundLists) => {
         if (err) {
             console.error(err)
         } else {
