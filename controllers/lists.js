@@ -16,7 +16,7 @@ router.get('/', (req,res) => {
 
 
 router.post('/', (req,res) => {
-    const newList = new Lists({
+    const newList = new list({
         title: req.body.title,
         tasks: req.body.tasks
     })
