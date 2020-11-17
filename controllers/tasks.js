@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const task = require('../models/Tasks.js');
 const list = require('../models/Lists');
+const Tasks = require('../models/Tasks.js');
 
 router.get('/:id', (req, res)=> {
     task.find({_id: req.params.id}, (err, foundTasks) => {
@@ -74,7 +75,6 @@ router.patch('/toggle-completed/:id', (req, res) => {
 
 //need to delete the task id from the list array!!!!
 router.delete('/delete/:id', (req, res) => {
-
     task.findByIdAndDelete({_id: req.params.id}, (err, deletedTask) => {
         if (err) {
             console.error( err )
@@ -95,6 +95,21 @@ router.delete('/delete/:id', (req, res) => {
     })
 
 })
+
+
+router.delete('/delete-completed?:ids', ( req,res ) => {
+    const taskIds = req.query.id;
+
+    Tasks.deleteMany({_id: { $in: taskIds } },
+    (err, result) => {
+        if ( err ) {
+            console.error(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 
 
 router.post('/bulk-tasks', (req,res) => {
