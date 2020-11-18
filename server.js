@@ -38,7 +38,8 @@ app.use('/lists', listController);
 const taskController = require('./controllers/tasks.js');
 app.use('/tasks', taskController);
 
-
+const azController = requie('./controllers/az.js');
+app.use('/az', azController);
 
 //Default routes
 app.get('/', (req, res) => {
