@@ -1,4 +1,5 @@
 const express = require('express');
+const session = express.session()
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -13,15 +14,22 @@ require('./db/db.js');
 
 
 //Middleware 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use( bodyParser.urlencoded( {extended: true}) )
 
-app.use(express.json())
+app.use( express.json() )
 
-app.use(express.static('public'));
+app.use( express.static('public') );
 
-app.use(methodOverride('_method'));
+app.use( methodOverride('_method') );
 
-app.use(cors())
+app.use( cors() )
+
+app.use( session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUnitinialized: true,
+    cookie: {}
+}))
 
 
 
