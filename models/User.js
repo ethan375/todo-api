@@ -21,11 +21,8 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
 
-    lists: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: List
-    }
+    lists: []
 })
 
 
-module.exports = mongoose.model(User, UserSchema)
+module.exports = mongoose.model('User', UserSchema)

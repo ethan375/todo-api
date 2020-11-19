@@ -1,5 +1,5 @@
 const express = require('express');
-const session = express.session()
+const session = require('express-session')
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -46,8 +46,8 @@ app.use('/lists', listController);
 const taskController = require('./controllers/tasks.js');
 app.use('/tasks', taskController);
 
-const azController = requie('./controllers/az.js');
-app.use('/az', azController);
+const userController = require('./controllers/user');
+app.use('/users', userController)
 
 //Default routes
 app.get('/', (req, res) => {
